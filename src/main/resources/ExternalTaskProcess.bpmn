@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1rc5nsc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0-nightly.20200929">
+  <bpmn:collaboration id="Collaboration_02qqg7w">
+    <bpmn:participant id="ExternalTask_Process" name="External Task Process" processRef="ExternalTaskProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="ExternalTaskProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_1yycv0o</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1yycv0o" sourceRef="StartEvent_1" targetRef="EnterMessageDetails" />
+    <bpmn:sequenceFlow id="Flow_0intjdd" sourceRef="EnterMessageDetails" targetRef="SendMail_External" />
+    <bpmn:endEvent id="Event_End" name="Ends Successfully">
+      <bpmn:incoming>Flow_0p34l4x</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0p34l4x" sourceRef="SendMail_External" targetRef="Event_End" />
+    <bpmn:sendTask id="SendMail_External" name="Send Mail" camunda:type="external" camunda:topic="mailservice">
+      <bpmn:incoming>Flow_0intjdd</bpmn:incoming>
+      <bpmn:outgoing>Flow_0p34l4x</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:userTask id="EnterMessageDetails" name="Enter Message Details">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="content" label="Mail Content:" type="string" />
+          <camunda:formField id="recipient" label="Recipient:" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1yycv0o</bpmn:incoming>
+      <bpmn:outgoing>Flow_0intjdd</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_02qqg7w">
+      <bpmndi:BPMNShape id="Participant_0bpnwg0_di" bpmnElement="ExternalTask_Process" isHorizontal="true">
+        <dc:Bounds x="129" y="60" width="600" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0p34l4x_di" bpmnElement="Flow_0p34l4x">
+        <di:waypoint x="530" y="180" />
+        <di:waypoint x="592" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0intjdd_di" bpmnElement="Flow_0intjdd">
+        <di:waypoint x="370" y="180" />
+        <di:waypoint x="430" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1yycv0o_di" bpmnElement="Flow_1yycv0o">
+        <di:waypoint x="215" y="180" />
+        <di:waypoint x="270" y="180" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="185" y="205" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_138qe8d_di" bpmnElement="Event_End">
+        <dc:Bounds x="592" y="162" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="565" y="205" width="90" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1p108c1_di" bpmnElement="SendMail_External">
+        <dc:Bounds x="430" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05ix8dt_di" bpmnElement="EnterMessageDetails">
+        <dc:Bounds x="270" y="140" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_17je9sw" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0-nightly.20200929">
+  <bpmn:collaboration id="Collaboration_01zetle">
+    <bpmn:participant id="ReceivingProcess" name="Receiving Process" processRef="MessageReceivingProcess" />
+    <bpmn:participant id="Participant_0vmoqo3" name="Sender" />
+    <bpmn:messageFlow id="Flow_1u65599" name="Message" sourceRef="Participant_0vmoqo3" targetRef="StartEvent" />
+  </bpmn:collaboration>
+  <bpmn:process id="MessageReceivingProcess" name="" isExecutable="true">
+    <bpmn:startEvent id="StartEvent" name="Start Event">
+      <bpmn:extensionElements>
+        <camunda:executionListener delegateExpression="${serializeDestinationListener}" event="end" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0uydn7v</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_188x2ku" messageRef="Message_1p5udu2" />
+    </bpmn:startEvent>
+    <bpmn:userTask id="ShowMessage" name="Show message">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="country" type="string" />
+          <camunda:formField id="state" type="string" />
+          <camunda:formField id="city" type="string" />
+          <camunda:formField id="address" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0uydn7v</bpmn:incoming>
+      <bpmn:outgoing>Flow_07wn7e0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event" name="End">
+      <bpmn:incoming>Flow_07wn7e0</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_07wn7e0" sourceRef="ShowMessage" targetRef="Event" />
+    <bpmn:sequenceFlow id="Flow_0uydn7v" sourceRef="StartEvent" targetRef="ShowMessage" />
+  </bpmn:process>
+  <bpmn:message id="Message_1p5udu2" name="destination" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_01zetle">
+      <bpmndi:BPMNShape id="Participant_0fkdg98_di" bpmnElement="ReceivingProcess" isHorizontal="true">
+        <dc:Bounds x="190" y="160" width="380" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0uydn7v_di" bpmnElement="Flow_0uydn7v">
+        <di:waypoint x="288" y="260" />
+        <di:waypoint x="340" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07wn7e0_di" bpmnElement="Flow_07wn7e0">
+        <di:waypoint x="440" y="260" />
+        <di:waypoint x="492" y="260" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_0gkzxg5_di" bpmnElement="StartEvent">
+        <dc:Bounds x="252" y="242" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="243" y="285" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_097x2a4_di" bpmnElement="ShowMessage">
+        <dc:Bounds x="340" y="220" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_11rkwkt_di" bpmnElement="Event">
+        <dc:Bounds x="492" y="242" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="500" y="285" width="20" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_0huf94m_di" bpmnElement="Participant_0vmoqo3" isHorizontal="true">
+        <dc:Bounds x="190" y="80" width="380" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1u65599_di" bpmnElement="Flow_1u65599">
+        <di:waypoint x="270" y="140" />
+        <di:waypoint x="270" y="242" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="278" y="176" width="45" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1s6exx4" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0-nightly.20200929">
+  <bpmn:collaboration id="Collaboration_00z8t1g">
+    <bpmn:participant id="CallAPI_Process" name="API Calling Process" processRef="CallAPIProcess" />
+  </bpmn:collaboration>
+  <bpmn:process id="CallAPIProcess" isExecutable="true">
+    <bpmn:startEvent id="StartEvent" name="Start Event">
+      <bpmn:outgoing>Flow_0b69zrw</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0b69zrw" sourceRef="StartEvent" targetRef="CallAPI" />
+    <bpmn:sequenceFlow id="Flow_0bejb15" sourceRef="CallAPI" targetRef="ShowAPIResponse" />
+    <bpmn:serviceTask id="CallAPI" name="CallAPI" camunda:delegateExpression="${callAPIDelegate}">
+      <bpmn:incoming>Flow_0b69zrw</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bejb15</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="ShowAPIResponse" name="Show API Response">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="user" label="User: " type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0bejb15</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tjt4aq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Event_end" name="Ends successfully">
+      <bpmn:incoming>Flow_0tjt4aq</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0tjt4aq" sourceRef="ShowAPIResponse" targetRef="Event_end" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_00z8t1g">
+      <bpmndi:BPMNShape id="Participant_0f2i2jr_di" bpmnElement="CallAPI_Process" isHorizontal="true">
+        <dc:Bounds x="120" y="105" width="580" height="245" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0tjt4aq_di" bpmnElement="Flow_0tjt4aq">
+        <di:waypoint x="530" y="230" />
+        <di:waypoint x="602" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0bejb15_di" bpmnElement="Flow_0bejb15">
+        <di:waypoint x="370" y="230" />
+        <di:waypoint x="430" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0b69zrw_di" bpmnElement="Flow_0b69zrw">
+        <di:waypoint x="215" y="230" />
+        <di:waypoint x="270" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent">
+        <dc:Bounds x="179" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="170" y="255" width="55" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1fu6qe0_di" bpmnElement="CallAPI">
+        <dc:Bounds x="270" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0g0cnvc_di" bpmnElement="ShowAPIResponse">
+        <dc:Bounds x="430" y="190" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1c2e8el_di" bpmnElement="Event_end">
+        <dc:Bounds x="602" y="212" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="577" y="255" width="88" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
