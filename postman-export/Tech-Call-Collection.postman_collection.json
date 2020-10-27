@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "9f8979fa-4b8f-44b1-9e8c-a9be3215f38e",
+		"name": "Tech-Call-Collection",
+		"description": "Start a process with information about the destination",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "StartProcess_ObjectMessage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"messageName\": \"destination\",\n    \"processVariables\" : {\n        \"destination\" : {\n            \"value\" : \"{\\\"country\\\":\\\"Germany\\\",\\\"state\\\":\\\"Bavaria\\\",\\\"city\\\":\\\"Diedorf\\\",\\\"postalCode\\\":\\\"86420\\\", \\\"streetAndNumber\\\":\\\"Berglesweg 9\\\"}\",\n            \"type\": \"Object\",\n            \"valueInfo\": {\n\t            \"serializationDataFormat\": \"application/json\",\n                \"objectTypeName\": \"com.example.pojo.Destination\"\n\t        }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StartProcess_JsonMessage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"messageName\": \"destination\",\n    \"processVariables\" : {\n        \"destination\" : {\n            \"value\" : \"{\\\"country\\\":\\\"Germany\\\",\\\"state\\\":\\\"Bavaria\\\",\\\"city\\\":\\\"Diedorf\\\",\\\"postalCode\\\":\\\"86420\\\", \\\"streetAndNumber\\\":\\\"Berglesweg 9\\\"}\",\n            \"type\": \"json\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/engine-rest/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"engine-rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -30,3 +30,9 @@ hs_err_pid*
 target/
 
 camunda-db.mv.db
+
+*.iml
+
+mail-service/mvnw
+
+*.cmd
