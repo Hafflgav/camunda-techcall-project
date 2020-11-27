@@ -36,3 +36,5 @@ camunda-db.mv.db
 mail-service/mvnw
 
 *.cmd
+
+*.db
