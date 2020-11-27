@@ -13,7 +13,7 @@
 
   <properties>
     <java.version>14</java.version>
-    <camunda.version>7.14.0-ee</camunda.version>
+    <camunda.version>7.14.1-ee</camunda.version>
     <springBoot.version>2.2.7.RELEASE</springBoot.version>
   </properties>
 
@@ -72,6 +72,12 @@
     <dependency>
       <groupId>org.camunda.bpm.springboot</groupId>
       <artifactId>camunda-bpm-spring-boot-starter-rest</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.camunda.consulting</groupId>
+      <artifactId>camunda-bpm-simulator</artifactId>
+      <version>1.6.0</version>
     </dependency>
 
     <dependency>
