@@ -1,4 +1,6 @@
-# Tech-Call-Project
+# Camunda Platform 7 Tech-Call-Project
+![](https://img.shields.io/badge/Compatible%20with-Camunda%20Platform%207-26d07c)
+
 ## Summary
 This project contains various examples for getting started with Camunda. 
 Therefore, the Camunda Spring Boot approach is choosen as recommended [here](https://camunda.com/best-practices/deciding-about-your-stack/).
